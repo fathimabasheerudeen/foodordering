@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>foodorder</title>
+</head>
+<body>
+<h1>Food Ordering Form</h1>
+<style>
+body {background-color: powderblue;}
+h1 {
+  color: blue;
+  font-family: times new roman;
+  font-size: 300%;
+  text-align: center;
+}
+</style>
+<form style="margin: auto; width: 170px;" class="row g-3 needs-validation" novalidate>
+  <div class="col-md-4">
+    <label for="validationCustom01" class="form-label">Customer name</label>
+    <input type="text" class="form-control" id="validationCustom01"  required>
+  </div>
+  <div class="col-md-4">
+    <label for="validationCustom02" class="form-label">Phone number</label>
+    <input type="text" class="form-control" id="validationCustom02"  required>
+    <div class="valid-feedback">
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="validationCustomUsername" class="form-label">Address</label>
+    <div class="input-group has-validation">
+      <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+    </div>
+  </div>
+    <br>
+  <select id="district" onchange="ChangedistrictList()">
+  <option value="">-- district --</option>
+  <option value="Al">Alappuzha</option>
+  <option value="Er">Ernakulam</option>
+  <option value="Kl">Kollam</option>
+  <option value="Kt">Kottayam</option>
+  <option value="Th">Thrissur</option>
+  <option value="Pa">Palakkad</option>
+  <option value="Tr">Trivandrum</option>
+</select>
+
+<select id="town"></select>
+    <br>
+
+<script>
+var districtsAndtowns = {};
+districtsAndtowns['Al'] = ['Cherthala', 'Ambalappuzha', 'Kuttanad'];
+districtsAndtowns['Er'] = ['Kochi', 'Palarivattom', 'kumbalangi', 'Kakkanad'];
+districtsAndtowns['Kl'] = ['Vaadi', 'Chathannor', 'Parippally'];
+districtsAndtowns['Kt'] = ['Thiruvalla', 'Changanassery', 'Erattupaetta'];
+districtsAndtowns['Th'] = ['chalakkudii', 'iringalakkuda', 'guruvayur'];
+districtsAndtowns['Pa'] = ['chandranagar', 'ottappalam', 'Pattambi'];
+districtsAndtowns['Tr'] = ['Varkala', 'kazhakkotam', 'chakka'];
+
+
+function ChangedistrictList() {
+    var districtList = document.getElementById("district");
+    var townList = document.getElementById("town");
+    var seldistrict = districtList.options[districtList.selectedIndex].value;
+    while (townList.options.length) {
+        townList.remove(0);
+    }
+    var districts = districtsAndtowns[seldistrict];
+    if (districts) {
+        var i;
+        for (i = 0; i < districts.length; i++) {
+            var district = new Option(districts[i], i);
+            townList.options.add(district);
+        }
+    }
+}
+</script>
+
+  <div class="col-md-3">
+    <label for="validationCustom05" class="form-label">Email</label>
+    <input type="email" class="form-control" id="validationCustom05" required>
+  </div>
+  <br>
+  <br>
+   <div class="col-md-6">
+    <label for="validationCustom06" class="form-label">Food</label>
+    <select class="form-select" id="validationCustom06" required>
+       <option selected disabled value="">Choose...</option>
+        <option>Burger $25</option>
+        <option>sandwitch $30</option>
+        <option>limejuice $15</option>
+    </select>
+      <br>
+      <br>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary" type="submit">Submit form</button>
+  </div>
+  <br>
+   <div class="col-12">
+    <button class="btn btn-primary" type="submit"><a href="{% url 'credentials:logout' %}">logout</a></button>
+  </div>
+</form>
+
+</body>
+</html>
+<!--  <div class="col-md-6">-->
+<!--    <label for="validationCustom03" class="form-label">District</label>-->
+<!--    <select class="form-select" id="validationCustom03" required>-->
+<!--       <option selected disabled value="">Choose...</option>-->
+<!--        <option>Alappuzha</option>-->
+<!--        <option>Ernakulam</option>-->
+<!--        <option>Kollam</option>-->
+<!--        <option>Trivandrum</option>-->
+<!--        <option>Kottayam</option>-->
+<!--        <option>Thrissur</option>-->
+<!--        <option>Palakkad</option>-->
+<!--    </select>-->

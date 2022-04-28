@@ -1,0 +1,43 @@
+<select id="district" onchange="ChangedistrictList()">
+  <option value="">-- district --</option>
+  <option value="Al">Alappuzha</option>
+  <option value="Er">Ernakulam</option>
+  <option value="Kl">Kollam</option>
+  <option value="Kt">Kottayam</option>
+  <option value="Th">Thrissur</option>
+  <option value="Pa">Palakkad</option>
+  <option value="Tr">Trivandrum</option>
+</select>
+
+<select id="town"></select>
+
+<script>
+var districtsAndtowns = {};
+districtsAndtowns['Al'] = ['Cherthala', 'Ambalappuzha', 'Kuttanad'];
+districtsAndtowns['Er'] = ['Kochi', 'Palarivattom', 'kumbalangi'];
+districtsAndtowns['Kl'] = ['Vaadi', 'Chathannor', 'Parippally'];
+districtsAndtowns['Kt'] = ['Vaadi', 'Chathannor', 'Parippally'];
+districtsAndtowns['Th'] = ['Vaadi', 'Chathannor', 'Parippally'];
+districtsAndtowns['Pa'] = ['Vaadi', 'Chathannor', 'Parippally'];
+districtsAndtowns['Tr'] = ['Vaadi', 'Chathannor', 'Parippally'];
+
+function ChangedistrictList() {
+    var districtList = document.getElementById("district");
+    var townList = document.getElementById("town");
+    var seldistrict = districtList.options[districtList.selectedIndex].value;
+    while (townList.options.length) {
+        townList.remove(0);
+    }
+    var districts = districtsAndtowns[seldistrict];
+    if (districts) {
+        var i;
+        for (i = 0; i < districts.length; i++) {
+            var district = new Option(districts[i], i);
+            townList.options.add(district);
+        }
+    }
+}
+</script>
+
+</body>
+</html>

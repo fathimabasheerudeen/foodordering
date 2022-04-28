@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><b></b></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div>
+     <button type="button" class="btn btn-success"><a href="credentials/login">Booking</a></button>
+        </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'figgyapp:allProdCat' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="credentials/login">Login</a>
+        </li>
+        <li class="nav-item">
+           <a class="nav-link" href="credentials/register">Register</a>
+        </li>
+        <li class="nav-item dropdown  {% if 'figgyapp' in request.path %} active {% endif %}">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Shop
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="{% url 'figgyapp:allProdCat' %}">All Products</a></li>
+               {% for cat in links %}
+            <li><a class="dropdown-item" href="{{cat.get_url}}">{{cat.name}}</a></li>
+               {% endfor %}
+
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Places
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Thiruvananthapuram">Trivandrum</a></li>
+            <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Alappuzha">Alappuzha</a></li>
+              <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Kollam">Kollam</a></li>
+              <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Ernakulam">Ernakulam</a></li>
+              <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Kottayam">Kottayam</a></li>
+              <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Thrissur">Thrissur</a></li>
+              <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Palakkad">Palakkad</a></li>
+            </li>
+          </ul>
+        </li>
+        {% if item_count > 0 %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'cart:cart_detail' %}"><i class="fas fa-shopping-cart"></i>({{item_count}})</a>
+        </li>
+        {% endif %}
+      </ul>
+
+      <form class="d-flex" action="{% url 'search_app:SearchResult' %}" method="get">
+        {% csrf_token %}
+        <input class="form-control me-2" type="search" placeholder="Search" name="q" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+      </form>
+    </div>
+  </div>
+
+</nav>
+<!--<nav>-->
+<!--    <ul>-->
+<!--        <li><a href="{% url 'figgyapp:allProdCat' %}">All Products</a></li>-->
+<!--        {% for cat in links %}-->
+
+<!--        <li><a href="{{cat.get_url}}">{{cat.name}}</a></li>-->
+<!--        {% endfor %}-->
+<!--        <li>Your Cart()</li>-->
+<!--    </ul>-->
+<!--</nav>-->
